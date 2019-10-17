@@ -1,4 +1,4 @@
-package vn.sunasterisk.movieawesome.data.api.response
+package vn.sunasterisk.movieawesome.data.remote.api.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

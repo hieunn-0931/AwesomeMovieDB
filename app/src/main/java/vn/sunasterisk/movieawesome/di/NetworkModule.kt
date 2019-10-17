@@ -12,7 +12,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import vn.sunasterisk.movieawesome.BuildConfig
-import vn.sunasterisk.movieawesome.data.api.ApiService
+import vn.sunasterisk.movieawesome.data.remote.api.ApiService
 import java.util.concurrent.TimeUnit
 
 val networkModule = module {
