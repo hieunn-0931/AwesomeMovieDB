@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <style name="TextViewInforActor" parent="android:Widget.TextView">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:padding">@dimen/dp_4</item>
+    </style>
+
+    <style name="LabelInforActor" parent="TextViewInforActor">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

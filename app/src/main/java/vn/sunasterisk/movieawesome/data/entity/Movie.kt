@@ -1,11 +1,15 @@
 package vn.sunasterisk.movieawesome.data.entity
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+@Entity(tableName = "Movie")
 data class Movie(
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     val id: Int,
     @SerializedName("popularity")
@@ -25,5 +29,7 @@ data class Movie(
     @SerializedName("overview")
     val overview: String,
     @SerializedName("release_date")
-    val releaseDate: String
+    val releaseDate: String,
+    @SerializedName("backdrop_path")
+    val backdropPath: String? = null
 ) : Parcelable
