@@ -1,14 +1,10 @@
 package vn.sunasterisk.movieawesome.ui.screen.home
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import vn.sunasterisk.movieawesome.data.entity.Movie
-import vn.sunasterisk.movieawesome.data.entity.MovieTrending
 import vn.sunasterisk.movieawesome.data.repository.MovieRepository
 import vn.sunasterisk.movieawesome.ui.base.viewmodel.BaseLoadMoreRefreshViewModel
-import vn.sunasterisk.movieawesome.ui.screen.viewpager.SlideAdapter
 
 class HomeViewModel(private val movieRepository: MovieRepository) :
     BaseLoadMoreRefreshViewModel<Movie>() {
@@ -20,6 +16,7 @@ class HomeViewModel(private val movieRepository: MovieRepository) :
                     page,
                     movieRepository.getListMoviesByCategory("upcoming", page).movies
                 )
+                movieRepository.getListGenreAsync()
             } catch (e: Exception) {
                 onLoadFail(e)
             }

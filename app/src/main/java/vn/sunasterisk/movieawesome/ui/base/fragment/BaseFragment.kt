@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import vn.sunasterisk.movieawesome.BR
 import vn.sunasterisk.movieawesome.R
@@ -84,6 +85,28 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
         }
     }
 
+    fun addFragment(
+        fragment: Fragment, TAG: String?, addToBackStack: Boolean = false,
+        transit: Int = -1
+    ) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.add(R.id.container, fragment, TAG)
+            ?.apply {
+                commitTransaction(this, addToBackStack, transit)
+            }
+    }
+
+    fun replaceFragment(
+        fragment: Fragment, TAG: String?, addToBackStack: Boolean = false,
+        transit: Int = -1
+    ) {
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.replace(R.id.container, fragment, TAG)
+            ?.apply {
+                commitTransaction(this, addToBackStack, transit)
+            }
+    }
+
     fun handleShowErrorMessage(message: String) {
         if (messageDialog?.isShowing == true) {
             messageDialog?.hide()
@@ -101,4 +124,18 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
         messageDialog?.dismiss()
         super.onDestroy()
     }
+
+    private fun commitTransaction(
+        transaction: FragmentTransaction, addToBackStack: Boolean = false,
+        transit: Int = -1
+    ) {
+        if (addToBackStack) transaction.addToBackStack(null)
+        if (transit != -1) transaction.setTransition(transit)
+        transaction.commit()
+    }
+
+    fun popChildFragment(parentFragment: Fragment = this) {
+        parentFragment.childFragmentManager.popBackStack()
+    }
+
 }
